@@ -1,0 +1,37 @@
+<?php
+include 'config.php';
+
+// Verifica se o método de requisição é POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recebe os dados do formulário
+    $recurso_id = $_POST['recurso_id'];
+    $turno_id = $_POST['turno_id'];
+    $data = $_POST['data'];
+    $curso_id = $_POST['curso_id'];
+    $turma = $_POST['turma'];
+    $professor_nome = $_POST['professor_nome'];
+    $professor_cpf = $_POST['professor_cpf'];
+
+    // Insere os dados no banco de dados
+    $sql = "INSERT INTO reservas (recurso_id, turno_id, data, curso_id, turma, professor_nome, professor_cpf) 
+            VALUES ('$recurso_id', '$turno_id', '$data', '$curso_id', '$turma', '$professor_nome', '$professor_cpf')";
+    
+    // Executa a query de inserção e verifica por erros
+    if ($conexao->query($sql) === TRUE) {
+        // Redireciona para sistema2.php após o cadastro da reserva
+        header('Location: sistema2.php');
+        exit(); // Sai do script após o redirecionamento
+    } else {
+        // Exibe mensagem de erro caso haja problemas na query
+        echo "Erro ao cadastrar reserva: " . $conexao->error;
+    }
+}
+
+// Recupera recursos, turnos e cursos para o formulário
+$recursos = $conexao->query("SELECT * FROM recursos");
+$turnos = $conexao->query("SELECT * FROM turnos");
+$cursos = $conexao->query("SELECT * FROM cursos");
+
+// Fecha a conexão após o uso
+$conexao->close();
+?>

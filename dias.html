@@ -1,0 +1,51 @@
+<?php
+include 'config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $turno_id = $_POST['turno_id'];
+    $data = $_POST['data'];
+
+    $sql = "INSERT INTO atribuicoes (turno_id, data) VALUES ('$turno_id', '$data')";
+    
+    if ($conexao->query($sql) === TRUE) {
+        // Redireciona para sistema2.php após o cadastro bem-sucedido
+        header('Location: sistema1.php');
+        exit();
+    } else {
+        echo "Erro: " . $sql . "<br>" . $conexao->error;
+    }
+}
+
+// Recupera turnos para o formulário
+$turnos = $conexao->query("SELECT * FROM turnos");
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cadastrar Atribuições</title>
+</head>
+
+<body>
+  <h2>Cadastrar Dias de Aula</h2>
+  <form method="post" action="dias.php">
+    <label for="turno_id">Turno:</label>
+    <select name="turno_id">
+      <?php while ($row = $turnos->fetch_assoc()): ?>
+      <option value="<?php echo $row['id']; ?>"><?php echo $row['nome']; ?></option>
+      <?php endwhile; ?>
+    </select>
+    <br><br>
+
+    <label for="data">Data:</label>
+    <input type="date" name="data" required>
+    <br><br>
+
+    <input type="submit" value="Cadastrar">
+  </form>
+</body>
+
+</html>
+
+<?php $conexao->close(); ?>

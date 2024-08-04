@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Aprovar Reservas</title>
+</head>
+
+<body>
+  <h2>Aprovar Reservas</h2>
+  <table border="1">
+    <tr>
+      <th>Recurso</th>
+      <th>Turno</th>
+      <th>Data</th>
+      <th>Curso</th>
+      <th>Turma</th>
+      <th>Nome do Professor</th>
+      <th>CPF do Professor</th>
+      <th>Ações</th>
+    </tr>
+    <?php if ($result->num_rows > 0): ?>
+    <?php while($row = $result->fetch_assoc()): ?>
+    <tr>
+      <td>
+        <?php echo htmlspecialchars($row['recurso']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['turno']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['data']); ?>
+      </td>
+      <td>
+        <?php echo obterNomeCurso($conexao, $row['curso_id']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['turma']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['professor_nome']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['professor_cpf']); ?>
+      </td>
+      <td>
+        <form method="post" action="">
+          <input type="hidden" name="reserva_id" value="<?php echo $row['id']; ?>">
+          <button type="submit" name="acao" value="aprovar">Aprovar</button>
+          <button type="submit" name="acao" value="negar">Negar</button>
+        </form>
+      </td>
+    </tr>
+    <?php endwhile; ?>
+    <?php else: ?>
+    <tr>
+      <td colspan="8">Nenhuma reserva pendente</td>
+    </tr>
+    <?php endif; ?>
+  </table>
+</body>
+
+</html>
+
+<?php $conexao->close(); ?>

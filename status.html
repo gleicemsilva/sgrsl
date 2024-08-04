@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Reservas do Professor</title>
+</head>
+
+<body>
+  <h2>Reservas do Professor</h2>
+  <table border="1">
+    <tr>
+      <th>Recurso</th>
+      <th>Turno</th>
+      <th>Data</th>
+      <th>Curso</th>
+      <th>Turma</th>
+      <th>Nome do Professor</th>
+      <th>CPF do Professor</th>
+      <th>Status</th>
+    </tr>
+    <?php if ($result->num_rows > 0): ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+    <tr>
+      <td>
+        <?php echo htmlspecialchars($row['recurso']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['turno']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['data']); ?>
+      </td>
+      <td>
+        <?php echo obterNomeCurso($conexao, $row['curso_id']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['turma']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['professor_nome']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['professor_cpf']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['status']); ?>
+      </td>
+    </tr>
+    <?php endwhile; ?>
+    <?php else: ?>
+    <tr>
+      <td colspan="8">Nenhuma reserva encontrada</td>
+    </tr>
+    <?php endif; ?>
+  </table>
+</body>
+
+</html>
+
+<?php 
+// Fecha a conexão após o uso
+$conexao->close();
+?>

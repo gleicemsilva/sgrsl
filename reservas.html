@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cadastrar Reservas</title>
+</head>
+
+<body>
+  <h2>Cadastrar Reserva</h2>
+  <form method="post" action="reservado.php">
+    <label for="recurso_id">Recurso:</label>
+    <select name="recurso_id" required>
+      <option value="">Selecione uma opção</option>
+      <?php while ($row = $recursos->fetch_assoc()): ?>
+      <option value="<?php echo $row['id']; ?>">
+        <?php echo htmlspecialchars($row['nome']); ?>
+      </option>
+      <?php endwhile; ?>
+    </select>
+    <br><br>
+
+    <label for="turno_id">Turno:</label>
+    <select name="turno_id" required>
+      <option value="">Selecione uma opção</option>
+      <?php while ($row = $turnos->fetch_assoc()): ?>
+      <option value="<?php echo $row['id']; ?>">
+        <?php echo htmlspecialchars($row['nome']); ?>
+      </option>
+      <?php endwhile; ?>
+    </select>
+    <br><br>
+
+    <label for="data">Data:</label>
+    <input type="date" name="data" required>
+    <br><br>
+
+    <label for="curso_id">Curso:</label>
+    <select name="curso_id" required>
+      <option value="">Selecione uma opção</option>
+      <?php while ($row = $cursos->fetch_assoc()): ?>
+      <option value="<?php echo $row['id']; ?>">
+        <?php echo htmlspecialchars($row['nome']); ?>
+      </option>
+      <?php endwhile; ?>
+    </select>
+    <br><br>
+
+    <label for="turma">Turma:</label>
+    <input type="text" name="turma" required>
+    <br><br>
+
+    <label for="professor_nome">Nome do Professor:</label>
+    <input type="text" name="professor_nome" required>
+    <br><br>
+
+    <label for="professor_cpf">CPF do Professor:</label>
+    <input type="text" name="professor_cpf" required>
+    <br><br>
+
+    <input type="submit" value="Cadastrar Reserva">
+  </form>
+</body>
+
+</html>
+
+<?php $conexao->close(); ?>

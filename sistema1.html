@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Visualizar Dias de Aula</title>
+</head>
+
+<body>
+  <h2>Dias de Aula</h2>
+  <table border="1">
+    <tr>
+      <th>Turno</th>
+      <th>Data</th>
+    </tr>
+    <?php if ($result->num_rows > 0): ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+    <tr>
+      <td>
+        <?php echo htmlspecialchars($row['turno']); ?>
+      </td>
+      <td>
+        <?php echo htmlspecialchars($row['data']); ?>
+      </td>
+    </tr>
+    <?php endwhile; ?>
+    <?php else: ?>
+    <tr>
+      <td colspan="2">Nenhuma atribuição encontrada</td>
+    </tr>
+    <?php endif; ?>
+  </table>
+</body>
+
+</html>
+
+<br>
+<a href="dias.html">Cadastrar Dias</a> |
+<a href="pendentes.html">Aprovar Reservas</a>
+
+<?php $conexao->close(); ?>
