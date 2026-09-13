@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de Login</title>
+  <style>
+  /* Estilo base */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f9f0;
+    /* Cor de fundo clara e neutra */
+    color: #333;
+    /* Texto escuro para legibilidade */
+    margin: 0;
+    padding: 20px;
+  }
+
+  /* Estilo do título */
+  h2 {
+    color: #4a773c;
+    /* Verde mais escuro para o título */
+    text-align: center;
+  }
+
+  /* Estilo do formulário */
+  form {
+    background-color: #eaf9e9;
+    /* Verde muito claro para o fundo do formulário */
+    border: 1px solid #8ccb8c;
+    /* Borda verde clara */
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    /* Largura máxima para centralizar o formulário */
+    margin: auto;
+  }
+
+  /* Estilo dos rótulos */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #4a773c;
+    /* Verde mais escuro para os rótulos */
+  }
+
+  /* Estilo dos campos de entrada e seleção */
+  input[type="text"],
+  input[type="password"],
+  select {
+    width: calc(100% - 22px);
+    /* Ajusta a largura considerando o padding e bordas */
+    padding: 10px;
+    border: 1px solid #8ccb8c;
+    /* Borda verde clara */
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    /* Inclui padding e bordas no cálculo da largura */
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  select:focus {
+    border-color: #4a773c;
+    /* Verde mais escuro quando em foco */
+    outline: none;
+    /* Remove o contorno padrão */
+  }
+
+  /* Estilo do botão de envio */
+  input[type="submit"] {
+    background-color: #8ccb8c;
+    /* Verde um pouco mais escuro */
+    color: #ffffff;
+    /* Texto branco */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+    width: 95%;
+    /* Largura total para o botão */
+  }
+
+  input[type="submit"]:hover {
+    background-color: #74bfa0;
+    /* Verde ainda mais escuro no hover */
+  }
+
+  /* Espaçamento entre os elementos do formulário */
+  form>*:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: #4a773c;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #8ccb8c;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <center>
+      <h1>Login Coordenador</h1>
+    </center>
+    <form action="teste1.php" method="POST">
+      <input type="text" name="email" placeholder="Email">
+
+      <input type="password" name="senha" placeholder="Senha">
+
+      <input class="inputSubmit" type="submit" name="submit" value="Entrar">
+      <center>
+        <a href="form1.php">Cadastrar-se</a><br>
+        <a href="home.php">Voltar</a>
+      </center>
+    </form>
+
+  </div>
+</body>
+
+</html>
